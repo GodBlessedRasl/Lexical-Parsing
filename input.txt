@@ -1,0 +1,180 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+//class Leksema{
+//public:
+
+//private:
+
+//};
+
+int main()
+{
+    ifstream in;
+    in.open("/home/rasull/Practicums/Leksical_Parsing/input.txt");
+    ofstream out;
+    out.open("/home/rasull/Practicums/Leksical_Parsing/output.txt");
+    char cur, next;
+    string str;
+    in.get(cur);
+    while(in.get(next)){
+        if(cur == '(' || cur == ')' || cur == ',' || cur == ';' || cur == '{' || cur == '}'){
+            out << cur << " " << 5 << "\n";
+            cur = next;
+        } else if (cur == '+') {
+            if(next == '+'){
+                out << cur << next << " " << 4 << " " << "sign12" << "\n";
+                in.get(cur);
+            }else if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign10" << " " << "sign12" << "\n";
+                cur = next;
+            }
+        } else if (cur == '-') {
+            if(next == '-'){
+                out << cur << next << " " << 4 << " " << "sign12" << "\n";
+                in.get(cur);
+            }else if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" <<  "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign10" << " " << "sign12" << "\n";
+                cur = next;
+            }
+        }  else if (cur == '*') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign11" << "\n";
+                cur = next;
+            }
+        }  else if (cur == '/') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign11" << "\n";
+                cur = next;
+            }
+        }  else if (cur == '%') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" <<  "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign11" <<  "\n";
+                cur = next;
+            }
+        }  else if (cur == '!') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign7" <<   "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign12" <<   "\n";
+                cur = next;
+            }
+        }  else if (cur == '&') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else if(next == '&'){
+                out << cur << next << " " << 4 << " " << "sign3" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign6" << "\n";
+                cur = next;
+            }
+        }  else if (cur == '/') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign11" <<  "\n";
+                cur = next;
+            }
+        } else if (cur == '|') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else if(next == '|'){
+                out << cur << next << " " << 4 << " " << "sign2" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign4" << "\n";
+                cur = next;
+            }
+        }  else if (cur == '=') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign7" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign1" << "\n";
+                cur = next;
+            }
+        } else if (cur == '^') {
+            if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign1" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign5" << "\n";
+                cur = next;
+            }
+        } else if(cur == '[' || cur == ']'){
+            out << cur << " " << 4 << "\n";
+            cur = next;
+        } else if(cur == '~'){
+            out << cur << " " << 4 << " " << "sign12" << "\n";
+            cur = next;
+        } else if(cur == '>'){
+            if(next == '>'){
+                out << cur << next << " " << 4 << " " << "sign9" << "\n";
+                in.get(cur);
+            }else if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign8" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign8" << "\n";
+                cur = next;
+            }
+        } else if(cur == '<'){
+            if(next == '<'){
+                out << cur << next << " " << 4 << " " << "sign9" << "\n";
+                in.get(cur);
+            }else if(next == '='){
+                out << cur << next << " " << 4 << " " << "sign8" << "\n";
+                in.get(cur);
+            }else{
+                out << cur << " " << 4 << " " << "sign8" << "\n";
+                cur = next;
+            }
+        }
+    }
+    if(cur == '+' || cur == '-'){
+        out << cur << " " << 4 << " " << "sign10" << " " << "sign12" << "\n";
+    }
+    if(cur == '!' || cur == '~'){
+        out << cur << " " << 4 << " " << "sign12" << "\n";
+    }
+    if(cur == '*' || cur == '/' || cur == '%'){
+        out << cur << " " << 4 << " " << "sign11" << "\n";
+    }
+    if(cur == '<' || cur == '>'){
+        out << cur << " " << 4 << " " << "sign8" << "\n";
+    }
+    if(cur == '&'){
+        out << cur << " " << 4 << " " << "sign6" << "\n";
+    }
+    if(cur == '^'){
+        out << cur << " " << 4 << " " << "sign5" << "\n";
+    }
+    if(cur == '|'){
+        out << cur << " " << 4 << " " << "sign4" << "\n";
+    }
+    if(cur == '(' || cur == ')' || cur == ',' || cur == ';' || cur == '{' || cur == '}'){
+        out << cur << " " << 5 << "\n";
+    }
+    return 0;
+}

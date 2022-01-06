@@ -1,0 +1,6 @@
+ifstream in;
+in.open("/home/rasull/Practicums/Leksical_Parsing/input.txt");
+ofstream out;
+out.open("/home/rasull/Practicums/Leksical_Parsing/output.txt");
+char cur, next;
+string str;
